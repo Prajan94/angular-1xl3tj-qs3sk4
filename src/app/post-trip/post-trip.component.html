@@ -1,0 +1,189 @@
+
+<div style="margin:5rem">
+<div *ngIf="firstStep">
+  <h4>Personal Details</h4>
+  <form #stepOne [formGroup]="stepOneForm" autocomplete="off"
+  novalidate #formRef="ngForm" (ngSubmit)="submitSteponeForm()">
+    <div class="container">
+      <div class="row col-sm-12">
+        <div class="col-sm-4">
+          <label for="exampleInputName">Name</label>
+          <input type="text" formControlName="firstName" class="form-control" id="exampleInputName" placeholder="Enter Name">
+          <span class="alert-red" *ngIf="stepOneForm.controls['firstName'].hasError('required') && formRef.submitted">First Name is a required field
+          </span>
+      </div>
+      <div class="col-sm-4">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small><br>
+        <span class="alert-red" *ngIf="stepOneForm.controls['email'].hasError('required') && formRef.submitted">Email is a required field
+        </span>
+      </div>
+    <div class="col-sm-4">
+      <label for="exampleInputAge">Date Of Birth</label>
+      <input type="date" formControlName="age" class="form-control" id="exampleInputAge" placeholder="Enter Date Of Birth">
+      <span class="alert-red" *ngIf="stepOneForm.controls['age'].hasError('required') && formRef.submitted">Age is a required field
+      </span>
+    </div>
+  </div>
+  <div class="row col-sm-12">
+    <div class="col-sm-4">
+      <label for="exampleInputGender">Gender</label>
+      <select formControlName="gender" class="form-control" id="exampleInputGender" placeholder="Enter Gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Transgender">Transgender</option>
+      </select>
+      <span class="alert-red" *ngIf="stepOneForm.controls['gender'].hasError('required') && formRef.submitted">Gender is a required field
+      </span>
+  </div>
+  <div class="col-sm-4">
+    <label for="exampleInputPhone">Phone Number</label>
+    <input formControlName="phoneNumber" type="tel"  class="form-control" id="exampleInputPhone" placeholder="Enter Phone Number">
+    <small class="form-text text-muted">We'll never share your number with anyone else.</small><br>
+    <span class="alert-red" *ngIf="stepOneForm.controls['phoneNumber'].hasError('required') && formRef.submitted">Phone Number is a required field
+    </span>
+  </div>
+  <div class="col-sm-4">
+    <label for="exampleInputCompanyName">Company Name</label>
+    <input type="text" formControlName="companyName" class="form-control" id="exampleInputCompanyName" placeholder="Enter Company Name">
+    <span class="alert-red" *ngIf="stepOneForm.controls['companyName'].hasError('required') && formRef.submitted">Company Name is a required field
+    </span>
+  </div>
+  </div>
+  </div>
+  <div class="button" style="margin-left: 35rem; margin-top: 2rem">
+  <button class="btn btn-primary" (click)="submitFirstStep()">Next</button>
+  </div>
+  </form>
+</div>
+<div *ngIf="secondStep">
+  <h4>Trip Details</h4>
+  <form #stepTwo [formGroup]="stepTwoForm" autocomplete="off"
+  novalidate #formRef="ngForm">
+    <div class="container">
+      <div class="row col-sm-12">
+        <div class="col-sm-4">
+          <label for="exampleInputPlace">Place</label>
+          <input type="text" formControlName="place" class="form-control" id="exampleInputPlace" placeholder="Enter place">
+          <span class="alert-red" *ngIf="stepTwoForm.controls['place'].hasError('required') && formRef.submitted">Place is a required field
+          </span>
+        </div>
+        <div class="col-sm-4">
+          <label for="exampleInputVehicle">Vehicle</label>
+          <select formControlName="vehicle" class="form-control" id="exampleInputVehicle" placeholder="Select Vehicle">
+            <option value="Car">Car</option>
+            <option value="Bike">Bike</option>
+          </select>
+          <span class="alert-red" *ngIf="stepTwoForm.controls['vehicle'].hasError('required') && formRef.submitted">Vehicle is a required field
+          </span>
+        </div>
+        <div class="col-sm-4">
+          <label for="exampleInputSeat">Seats</label>
+          <input type="number" formControlName="seats" class="form-control" id="exampleInputSeat" placeholder="Enter Seats">
+          <span class="alert-red" *ngIf="stepTwoForm.controls['seats'].hasError('required') && formRef.submitted">Seats is a required field
+          </span>
+        </div>
+      </div>
+      <div class="row col-sm-12">
+        <div class="col-sm-4">
+          <label for="exampleInputDate">Date of Trip</label>
+          <input type="date" formControlName="dateOfTrip" class="form-control" id="exampleInputDate" placeholder="Select Date">
+          <span class="alert-red" *ngIf="stepTwoForm.controls['dateOfTrip'].hasError('required') && formRef.submitted">Date is a required field
+          </span>
+        </div>
+        <div class="col-sm-4">
+          <label for="exampleInputPrice">Price</label>
+          <input type="number" formControlName="sharingPrice" class="form-control" id="exampleInputPrice" placeholder="Quote Price">
+          <span class="alert-red" *ngIf="stepTwoForm.controls['sharingPrice'].hasError('required') && formRef.submitted">Quote Price is a required field
+          </span>
+        </div>
+        <div class="col-sm-4">
+          <label for="exampleInputInstructions">Instructions to Partners</label>
+          <input type="text" formControlName="instructions" class="form-control" id="exampleInputInstructions" placeholder="Enter Instructions">
+          <span class="alert-red" *ngIf="stepTwoForm.controls['instructions'].hasError('required') && formRef.submitted">Instructions is a required field
+          </span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-left: 35rem; margin-top: 2rem">
+      <button class="btn btn-secondary" (click)="enableFirstStep()">Previous</button>
+      <button (click)="submitSecondStep()" class="btn btn-primary" style="margin-left: 1rem;">Next</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="thirdStep">
+  <h4>Preview</h4>
+  <div *ngIf="previewDeatilsEnabled"  class="container">
+    <div class="row col-sm-12">
+      <div class="col-sm-2">
+        <label>Name</label><br>
+        <label>{{stepOneForm.controls['firstName'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Email</label><br>
+        <label>{{stepOneForm.controls['email'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Age</label><br>
+        <label>{{stepOneForm.controls['age'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Gender</label><br>
+        <label>{{stepOneForm.controls['gender'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Phone Number</label><br>
+        <label>{{stepOneForm.controls['phoneNumber'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Company Name</label><br>
+        <label>{{stepOneForm.controls['companyName'].value}}</label>
+      </div>
+    </div>
+    <div class="mt-2 row col-sm-12">
+      <div class="col-sm-2">
+        <label>Trip Place</label><br>
+        <label>{{stepTwoForm.controls['place'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Vehicle</label><br>
+        <label>{{stepTwoForm.controls['vehicle'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Seats</label><br>
+        <label>{{stepTwoForm.controls['seats'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Date of Trip</label><br>
+        <label>{{stepTwoForm.controls['dateOfTrip'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Sharing Price</label><br>
+        <label>{{stepTwoForm.controls['sharingPrice'].value}}</label>
+      </div>
+      <div class="col-sm-2">
+        <label>Instructions</label><br>
+        <label>{{stepTwoForm.controls['instructions'].value}}</label>
+      </div>
+    </div>
+    <div style="margin-left: 35rem; margin-top: 2rem">
+      <button class="btn btn-secondary" (click)="enableSecondStep()">Previous</button>
+      <button (click)="submitTrip()" class="btn btn-primary" style="margin-left: 1rem;">Submit</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="fourthStep">
+  <div class="container">
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Congratulations! Your trip has been posted successfully</h4>
+      <p>Get ready for an exciting journey filled with unforgettable experiences and discoveries. Happy tripping!</p>
+      <hr>
+      <p class="mb-0">Embarking on a trip with strangers can be both exciting and rewarding. To foster a positive experience, ensure open communication, respect individual preferences, and embrace the opportunity to forge new connections. Adventure awaits, and we're here to help make your journey with strangers memorable and harmonious. Safe travels!</p>
+    </div>
+  </div>
+  <div class="button" style="margin-left: 35rem; margin-top: 2rem">
+    <button class="btn btn-primary" (click)="postNewTrip()" >Post Trip</button>
+  </div>
+</div>
+</div>
